@@ -12,4 +12,14 @@ const guardar = async (evento) => {
         alert('Debe llenar todos los campos');
         return 
     }
+
+    const body = new FormData(formulario)
+    body.append('tipo', 1)
+    body.delete('cliente_id')
+    const url = '/Martinez_tarea6/controladores/clientes/index.php';
+    const config = {
+        method : 'POST',
+        // body: otroNombre
+        body
+    }
 }
