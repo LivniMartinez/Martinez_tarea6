@@ -18,7 +18,16 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <button type="submit" class="btn btn-primary w-100">Guardar</button>
+                        <button type="submit" id="botonGuardar" class="btn btn-primary w-100">Guardar</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" id="botonModificar" class="btn btn-warning w-100">Modificar</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" id="botonBuscar" class="btn btn-info w-100">Buscar</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" id="botonCancelar" class="btn btn-danger w-100">Cancelar</button>
                     </div>
                 </div>
             </form>
