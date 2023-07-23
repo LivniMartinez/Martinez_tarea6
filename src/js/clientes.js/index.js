@@ -54,4 +54,73 @@ const guardar = async (evento) => {
         console.log(error);
     }
 }
+const buscar = async () => {
 
+    let cliente_nombre = formulario.cliente_nombre.value;
+    let cliente_nit = formulario.cliente_nit.value;
+    const url = `/Martinez_tarea6/controladores/clientes/index.php?cliente_nombre=${cliente_nombre}&cliente_nit=${cliente_nit}`;
+    const config = {
+        method : 'GET'
+    }
+    
+        try {
+            const respuesta = await fetch(url, config)
+            const data = await respuesta.json();
+            
+            tablaProductos.tBodies[0].innerHTML = ''
+            const fragment = document.createDocumentFragment();
+            console.log(data);
+            if(data.length > 0){
+                let contador = 1;
+                data.forEach( cliente => {
+                    //Se crearon los elementos
+                    const tr = document.createElement('tr');
+                    const td1 = document.createElement('td')
+                    const td2 = document.createElement('td')
+                    const td3 = document.createElement('td')
+                    const td4 = document.createElement('td')
+                    const td5 = document.createElement('td')
+                    const buttonModificar = document.createElement('button')
+                    const buttonEliminar = document.createElement('button')
+    
+                    // Caracteristicas de los elementos
+                    buttonModificar.classList.add('btn', 'btn-warning')
+                    buttonEliminar.classList.add('btn', 'btn-danger')
+                    buttonModificar.textContent = 'Modificar'
+                    buttonEliminar.textContent = 'Eliminar'
+    
+                    buttonModificar.addEventListener('click', () => colocarDatos(cliente))
+                    buttonEliminar.addEventListener('click', () => eliminar(cliente.CLIENTE_ID))
+    
+                    td1.innerText = contador;
+                    td2.innerText = cliente.CLIENTE_NOMBRE
+                    td3.innerText = cliente.CLIENTE_NIT
+                    
+                    
+                    // ESTRUCTURANDO DOM
+                    td4.appendChild(buttonModificar)
+                    td5.appendChild(buttonEliminar)
+                    tr.appendChild(td1)
+                    tr.appendChild(td2)
+                    tr.appendChild(td3)
+                    tr.appendChild(td4)
+                    tr.appendChild(td5)
+    
+                    fragment.appendChild(tr);
+    
+                    contador++;
+                })
+            }else{
+                const tr = document.createElement('tr');
+                const td = document.createElement('td')
+                td.innerText = 'No existen registros'
+                td.colSpan = 5
+                tr.appendChild(td)
+                fragment.appendChild(tr);
+            }
+    
+            tablaProductos.tBodies[0].appendChild(fragment)
+        } catch (error) {
+            console.log(error);
+        }
+    }
