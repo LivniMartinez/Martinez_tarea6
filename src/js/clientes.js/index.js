@@ -97,7 +97,7 @@ const buscar = async () => {
                     td3.innerText = cliente.CLIENTE_NIT
                     
                     
-                    // ESTRUCTURANDO DOM
+                    // Se estructura el DOM
                     td4.appendChild(buttonModificar)
                     td5.appendChild(buttonEliminar)
                     tr.appendChild(td1)
@@ -124,3 +124,43 @@ const buscar = async () => {
             console.log(error);
         }
     }
+
+    const colocarDatos = (datos) => {
+        formulario.cliente_nombre.value = datos.CLIENTE_NOMBRE
+        formulario.cliente_nit.value = datos.CLIENTE_NIT
+        formulario.cliente_id.value = datos.CLIENTE_ID
+    
+       botonGuardar.disabled = true
+       botonGuardar.parentElement.style.display = 'none'
+       botonBuscar.disabled = true
+       botonBuscar.parentElement.style.display = 'none'
+       botonModificar.disabled = false
+       botonModificar.parentElement.style.display = ''
+       botonCancelar.disabled = false
+       botonCancelar.parentElement.style.display = ''
+        divTabla.style.display = 'none'
+    }
+    
+    const cancelarAccion = () => {
+       botonGuardar.disabled = false
+       botonGuardar.parentElement.style.display = ''
+       botonBuscar.disabled = false
+       botonBuscar.parentElement.style.display = ''
+       botonModificar.disabled = true
+       botonModificar.parentElement.style.display = 'none'
+       botonCancelar.disabled = true
+       botonCancelar.parentElement.style.display = 'none'
+        divTabla.style.display = ''
+    }
+    
+    const eliminar = (id) => {
+        if(confirm("¿Desea eliminar este cliente?")){
+            alert("eliminando")
+        }
+    }
+    
+    buscar();
+    
+    formulario.addEventListener('submit', guardar )
+    botonBuscar.addEventListener('click', buscar)
+    botonCancelar.addEventListener('click', cancelarAccion)
