@@ -22,4 +22,31 @@ const guardar = async (evento) => {
         // body: otroNombre
         body
     }
+
+    try {
+        const respuesta = await fetch(url, config)
+        const data = await respuesta.json();
+        
+        const {codigo, mensaje,detalle} = data;
+
+        switch (codigo) {
+            case 1:
+                formulario.reset();
+                buscar();
+                break;
+        
+            case 0:
+                console.log(detalle)
+                break;
+        
+            default:
+                break;
+        }
+
+        alert(mensaje);
+
+    } catch (error) {
+        console.log(error);
+    }
 }
+
