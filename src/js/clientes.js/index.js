@@ -3,6 +3,8 @@ const botonBuscar = document.getElementById('botonBuscar');
 const botonModificar = document.getElementById('botonModificar');
 const botonGuardar = document.getElementById('botonGuardar');
 const botonCancelar = document.getElementById('botonCancelar');
+const divTabla = document.getElementById('divTabla');
+const tablaProductos = document.getElementById('tablaProductos');
 
 botonModificar.disabled = true
 botonModificar.parentElement.style.display = 'none'
