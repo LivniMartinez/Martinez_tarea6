@@ -4,7 +4,10 @@ const botonModificar = document.getElementById('botonModificar');
 const botonGuardar = document.getElementById('botonGuardar');
 const botonCancelar = document.getElementById('botonCancelar');
 
-
+botonModificar.disabled = true
+botonModificar.parentElement.style.display = 'none'
+botonCancelar.disabled = true
+botonCancelar.parentElement.style.display = 'none'
 
 const guardar = async (evento) => {
     evento.preventDefault();
