@@ -32,6 +32,24 @@
                 </div>
             </form>
         </div>
+        <div class="row justify-content-center" id="divTabla">
+            <div class="col-lg-8">
+                <h2>Listado de Clientes</h2>
+                <table class="table table-bordered table-hover" id="tablaProductos">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>NO. </th>
+                            <th>NOMBRE</th>
+                            <th>NIT</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <script src="../../src/js/funciones.js"></script>
     <script src="../../src/js/clientes/index.js"></script>
