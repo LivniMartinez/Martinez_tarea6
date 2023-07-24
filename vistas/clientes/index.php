@@ -3,7 +3,7 @@
     <div class="container">
         <h1 class="text-center">Formulario de ingreso de clientes</h1>
         <div class="row justify-content-center">
-            <form action="/Martinez_tarea6/controladores/clientes/guardar.php" method="POST" class="col-lg-8 border bg-light p-3">
+            <form  method="POST" class="col-lg-8 border bg-light p-3">
                 <div class="row mb-3">
                     <div class="col">
                     <label for="cliente_nombre">Nombre del cliente</label>
@@ -54,4 +54,4 @@
     <script src="../../src/js/funciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
     <script src="../../src/js/clientes/index.js"></script>
-<?php include_once '../../includes/footer.php'?>
+<?php include_once '../../includes/footer.php'?> 

@@ -28,6 +28,7 @@ const guardar = async (evento) => {
     };
   
     try {
+    
       const respuesta = await fetch(url, config);
       const data = await respuesta.json();
       console.log(data);
@@ -38,11 +39,13 @@ const guardar = async (evento) => {
         case 1:
           formulario.reset();
           buscar();
+          
           Swal.fire('Guardado', mensaje, 'success'); 
           break;
   
         case 0:
           console.log(detalle);
+          
           Swal.fire('Error, verifique sus datos', mensaje, 'error'); 
           break;
   
@@ -55,7 +58,6 @@ const guardar = async (evento) => {
     }
   };
 
-  
 const buscar = async () => {
 
     let cliente_nombre = formulario.cliente_nombre.value;

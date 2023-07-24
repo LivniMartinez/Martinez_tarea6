@@ -1,6 +1,8 @@
 <?php
     require '../../modelos/Cliente.php';
+
     $metodo = $_SERVER['REQUEST_METHOD'];
+    // aca revis el tipo
     $tipo = $_POST['tipo'];
 
     try {
@@ -8,8 +10,11 @@
             case 'POST':
                 $cliente = new Cliente($_POST);
                 if($tipo == 1){
+                
                     $resultado = $cliente->guardar();
+
                     $mensaje = "Se guardó correctamente";
+
                 }
                 if($tipo == 2){
                     $resultado = $cliente->modificar();
@@ -21,6 +26,7 @@
                 }
 
                 if($resultado){
+                 
                     echo json_encode([
                         'mensaje' => $mensaje,
                         'codigo' => 1
