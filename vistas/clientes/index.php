@@ -52,5 +52,6 @@
         </div>
     </div>
     <script src="../../src/js/funciones.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
     <script src="../../src/js/clientes/index.js"></script>
 <?php include_once '../../includes/footer.php'?>

@@ -13,47 +13,49 @@ botonCancelar.parentElement.style.display = 'none'
 
 const guardar = async (evento) => {
     evento.preventDefault();
-    if(!validarFormulario(formulario, ['cliente_id'])){
-        alert('Debe llenar todos los campos');
-        return 
+    if (!validarFormulario(formulario, ['cliente_id'])) {
+      Swal.fire('Error', 'Debe llenar todos los campos', 'error');
+      return;
     }
-
-    const body = new FormData(formulario)
-    body.append('tipo', 1)
-    body.delete('cliente_id')
+  
+    const body = new FormData(formulario);
+    body.append('tipo', 1);
+    body.delete('cliente_id');
     const url = '/Martinez_tarea6/controladores/clientes/index.php';
     const config = {
-        method : 'POST',
-        // body: otroNombre
-        body
-    }
-
+      method: 'POST',
+      body,
+    };
+  
     try {
-        const respuesta = await fetch(url, config)
-        const data = await respuesta.json();
-        
-        const {codigo, mensaje,detalle} = data;
-
-        switch (codigo) {
-            case 1:
-                formulario.reset();
-                buscar();
-                break;
-        
-            case 0:
-                console.log(detalle)
-                break;
-        
-            default:
-                break;
-        }
-
-        alert(mensaje);
-
+      const respuesta = await fetch(url, config);
+      const data = await respuesta.json();
+      console.log(data);
+  
+      const { codigo, mensaje, detalle } = data;
+  
+      switch (codigo) {
+        case 1:
+          formulario.reset();
+          buscar();
+          Swal.fire('Guardado', mensaje, 'success'); 
+          break;
+  
+        case 0:
+          console.log(detalle);
+          Swal.fire('Error, verifique sus datos', mensaje, 'error'); 
+          break;
+  
+        default:
+          break;
+      }
+  
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-}
+  };
+
+  
 const buscar = async () => {
 
     let cliente_nombre = formulario.cliente_nombre.value;
