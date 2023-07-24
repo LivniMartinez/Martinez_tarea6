@@ -9,6 +9,7 @@
         switch ($metodo) {
             case 'POST':
                 $cliente = new Cliente($_POST);
+              
                 if($tipo == 1){
                 
                     $resultado = $cliente->guardar();
@@ -18,6 +19,7 @@
                 }
                 if($tipo == 2){
                     $resultado = $cliente->modificar();
+                
                     $mensaje = "Se modificó correctamente";
                 }
                 if($tipo == 3){

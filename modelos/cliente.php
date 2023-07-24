@@ -13,7 +13,7 @@ class Cliente extends Conexion{
         $this->cliente_id = $args['cliente_id'] ?? null;
         $this->cliente_nombre = $args['cliente_nombre'] ?? '';
         $this->cliente_nit = $args['cliente_nit'] ?? '';
-        $this->cliente_situacion = $args['cliente_situacion'] ?? '';
+        $this->cliente_situacion = $args['cliente_situacion'] ?? 1;
     }
 
     public function guardar(){
@@ -58,10 +58,24 @@ class Cliente extends Conexion{
     }
 
     public function modificar(){
+
+        if (!$this->validarNit($this->cliente_nit)) {
+
+            return 0;
+      
+              }
+
         $sql = "UPDATE clientes  SET cliente_nombre = '$this->cliente_nombre', cliente_nit = $this->cliente_nit where cliente_id = $this->cliente_id";
         
         $resultado = self::ejecutar($sql);
-        return $resultado;
+        if ($resultado) {
+
+            return $resultado;
+        } else {
+
+          
+            return 0;
+        }
     }
 
     public function eliminar(){
