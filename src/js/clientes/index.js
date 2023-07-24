@@ -100,7 +100,6 @@ const buscar = async () => {
                     td2.innerText = cliente.CLIENTE_NOMBRE
                     td3.innerText = cliente.CLIENTE_NIT
                     
-                    
                     // Se estructura el DOM
                     td4.appendChild(buttonModificar)
                     td5.appendChild(buttonEliminar)
@@ -156,7 +155,57 @@ const buscar = async () => {
        botonCancelar.parentElement.style.display = 'none'
         divTabla.style.display = ''
     }
-    
+
+    const modificar = async () => {
+      const cliente_id = formulario.cliente_id.value;
+      if (!cliente_id) {
+          Swal.fire('Error', 'No se ha seleccionado ningún cliente para modificar.', 'error');
+          return;
+      }
+  
+      if (!validarFormulario(formulario, ['cliente_nombre'])) {
+          Swal.fire('Error', 'Debe llenar todos los campos.', 'error');
+          return;
+      }
+  
+      const body = new FormData(formulario);
+      body.append('tipo', 2); 
+  
+      const url = '/Martinez_tarea6/controladores/clientes/index.php';
+      const config = {
+          method: 'POST',
+          body,
+      };
+  
+      try {
+          const respuesta = await fetch(url, config);
+          const data = await respuesta.json();
+          console.log(data);
+  
+          const { codigo, mensaje, detalle } = data;
+  
+          switch (codigo) {
+              case 1:
+                  formulario.reset();
+                  cancelarAccion(); 
+                  buscar();
+  
+                  Swal.fire('Actualizado', mensaje, 'success');
+                  break;
+  
+              case 0:
+                  Swal.fire('Error, verifique sus datos', mensaje, 'error');
+                  break;
+  
+              default:
+                  break;
+          }
+      } catch (error) {
+          console.log(error);
+      }
+  };
+
+  
     const eliminar = (id) => {
         if(confirm("¿Desea eliminar este cliente?")){
             alert("eliminando")
