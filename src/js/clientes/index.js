@@ -156,6 +156,7 @@ const buscar = async () => {
         divTabla.style.display = ''
     }
 
+  //MODIFICAR
     const modificar = async () => {
       const cliente_id = formulario.cliente_id.value;
       if (!cliente_id) {
@@ -205,15 +206,44 @@ const buscar = async () => {
       }
   };
 
-  
-    const eliminar = (id) => {
-        if(confirm("¿Desea eliminar este cliente?")){
-            alert("eliminando")
+//ELIMINAR 
+  const eliminar = async (id) => {
+    if (confirm("¿Desea eliminar este cliente?")) {
+        const url = `/Martinez_tarea6/controladores/clientes/index.php?id=${id}`;
+        const config = {
+            method: 'DELETE',
+        };
+
+        try {
+            const respuesta = await fetch(url, config);
+            const data = await respuesta.json();
+            console.log(data);
+
+            const { codigo, mensaje } = data;
+
+            switch (codigo) {
+                case 1:
+                    buscar();
+
+                    Swal.fire('Eliminado', mensaje, 'success');
+                    break;
+
+                case 0:
+                    Swal.fire('Error', mensaje, 'error');
+                    break;
+
+                default:
+                    break;
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
-    
-    buscar();
-    
-    formulario.addEventListener('submit', guardar )
-    botonBuscar.addEventListener('click', buscar)
-    botonCancelar.addEventListener('click', cancelarAccion)
+};
+
+buscar();
+
+formulario.addEventListener('submit', guardar);
+botonBuscar.addEventListener('click', buscar);
+botonModificar.addEventListener('click', modificar);
+botonCancelar.addEventListener('click', cancelarAccion)
