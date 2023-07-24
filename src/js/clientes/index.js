@@ -74,6 +74,7 @@ const buscar = async () => {
             tablaProductos.tBodies[0].innerHTML = ''
             const fragment = document.createDocumentFragment();
             console.log(data);
+
             if(data.length > 0){
                 let contador = 1;
                 data.forEach( cliente => {
@@ -129,6 +130,7 @@ const buscar = async () => {
     }
 
     const colocarDatos = (datos) => {
+      console.log(datos)
         formulario.cliente_nombre.value = datos.CLIENTE_NOMBRE
         formulario.cliente_nit.value = datos.CLIENTE_NIT
         formulario.cliente_id.value = datos.CLIENTE_ID
@@ -159,6 +161,7 @@ const buscar = async () => {
   //MODIFICAR
     const modificar = async () => {
       const cliente_id = formulario.cliente_id.value;
+
       if (!cliente_id) {
           Swal.fire('Error', 'No se ha seleccionado ningún cliente para modificar.', 'error');
           return;
@@ -171,6 +174,7 @@ const buscar = async () => {
   
       const body = new FormData(formulario);
       body.append('tipo', 2); 
+      body.append('cliente_id', cliente_id)
   
       const url = '/Martinez_tarea6/controladores/clientes/index.php';
       const config = {
