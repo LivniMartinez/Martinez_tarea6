@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <form  method="POST" class="col-lg-8 border bg-light p-3">
                 <div class="row mb-3">
-                    <input type="text" id="cliente_id" >
+                    <input type="hidden" id="cliente_id" >
                     <div class="col">
                     <label for="cliente_nombre">Nombre del cliente</label>
                         <input type="text" name="cliente_nombre" id="cliente_nombre" class="form-control">

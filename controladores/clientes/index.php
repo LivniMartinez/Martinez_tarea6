@@ -8,9 +8,12 @@
     try {
         switch ($metodo) {
             case 'POST':
-                $cliente = new Cliente($_POST);
+       
+
+                 $cliente = new Cliente($_POST);
+             
               
-                if($tipo == 1){
+                if($tipo == 1){ 
                 
                     $resultado = $cliente->guardar();
 
@@ -24,7 +27,8 @@
                 }
                 if($tipo == 3){
                     $resultado = $cliente->eliminar();
-                    $mensaje = "Se eliminó correctamente";
+                  
+                     $mensaje = "Se eliminó correctamente";
                 }
 
                 if($resultado){
